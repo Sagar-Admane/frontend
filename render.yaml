@@ -1,0 +1,21 @@
+services:
+  - name: frontend
+    type: static
+    buildCommand: npm install && npm run build
+    publishDir: frontend/dist
+    envVars:
+      - key: VITE_API_URL
+        value: "https://your-backend-service.onrender.com"
+
+  - name: backend
+    type: web
+    env: node
+    buildCommand: npm install
+    startCommand: node server.js
+    rootDir: backend
+    plan: free
+    envVars:
+      - key: MONGO_URI
+        value: "your-mongodb-atlas-uri"
+      - key: GRPC_PORT
+        value: "30043"

@@ -12,7 +12,7 @@ function Button() {
 
     async function fetchData(){
         try {
-            const res = await axios.post("https://search-back-i6b2.onrender.com/search",{
+            const res = await axios.post("http://localhost:5000/search",{
                 title,
                 page,
                 type

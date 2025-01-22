@@ -12,4 +12,16 @@
         display: none;
     }
 
+    .next, .prev{
+        display: none;
+    }
+
+}
+
+@media screen and (max-width : 850px) {
+    .container{
+        button{
+            width: 50%;
+        }
+    }
 }

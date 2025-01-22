@@ -14,7 +14,7 @@ function Search() {
 
     async function handleSearch(){
         try {
-            const res = await axios.post("http://localhost:5000/search",{
+            const res = await axios.post("https://search-back-i6b2.onrender.com/search",{
                 title,
                 page,
                 type

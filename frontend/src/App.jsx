@@ -18,7 +18,7 @@ function App() {
   useEffect(()=>{
     async function fetchData(){
       try {
-        const res = await axios.get("http://localhost:5000/");
+        const res = await axios.get("https://search-back-i6b2.onrender.com");
         console.log(res.data);
         setTotal(res.data.result.total);
         setQuest(res.data.result.question);

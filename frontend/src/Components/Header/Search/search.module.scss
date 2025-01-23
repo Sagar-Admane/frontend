@@ -103,3 +103,9 @@ button{
         display: none;
     }
 }
+
+@media screen and (max-width : 460px) {
+    .container{
+        margin: 12px 30px;
+    }
+}

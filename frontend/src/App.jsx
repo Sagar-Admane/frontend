@@ -6,6 +6,7 @@ import Div from './Components/Divs/Div'
 import axios from "axios"
 import { questContext } from './Context/context'
 import Button from './Components/Button/Button'
+import Loader from './Components/Loader/Loader'
 
 function App() {
 
@@ -14,10 +15,12 @@ function App() {
   const [title, setTitle] = useState('');
   const [type, setType] = useState('MCQ');
   const [quest, setQuest] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(()=>{
     async function fetchData(){
       try {
+        setLoading(true);
         const res = await axios.get("https://backend-rrls.onrender.com");
         console.log(res.data);
         setTotal(res.data.result.total);
@@ -25,6 +28,8 @@ function App() {
         console.log(total);
       } catch (error) {
         console.log(error)
+      } finally {
+        setLoading(false);
       }
     }
 
@@ -33,10 +38,11 @@ function App() {
 
   return (
     <div>
-      <questContext.Provider value={{total, setTotal, page, setPage, title, setTitle, type, setType, quest, setQuest}} >
+      <questContext.Provider value={{total, setTotal, page, setPage, title, setTitle, type, setType, quest, setQuest, loading, setLoading}} >
       <Header />
       <Search />
       {
+        loading ? <Loader /> : 
         quest.map((val, index) => {
           console.log(val)
           return(

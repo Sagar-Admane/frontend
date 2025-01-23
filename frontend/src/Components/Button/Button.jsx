@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import style from "./button.module.scss"
 import { questContext } from '../../Context/context'
 import axios from 'axios'
@@ -13,6 +13,7 @@ function Button() {
 
     async function fetchData(){
         try {
+            val.setLoading(true);
             const res = await axios.post("https://backend-rrls.onrender.com/search",{
                 title,
                 page,
@@ -23,6 +24,8 @@ function Button() {
             val.setQuest(res.data.result.question);
         } catch (error) {
             console.log(error)
+        } finally {
+            val.setLoading(false);
         }
     }
 

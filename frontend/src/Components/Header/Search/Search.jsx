@@ -14,6 +14,7 @@ function Search() {
 
     async function handleSearch(){
         try {
+            val.setLoading(true)
             const res = await axios.post("https://backend-rrls.onrender.com/search",{
                 title,
                 page,
@@ -28,6 +29,8 @@ function Search() {
             // console.log(res);
         } catch (error) {
             console.log(error)
+        } finally {
+            val.setLoading(false);
         }
     }
 
@@ -55,6 +58,7 @@ function Search() {
             <select name="type" id="type" onChange={(e) => val.setType(e.target.value)} >
                 <option value="MCQ">MCQ</option>
                 <option value="ANAGRAM">ANAGRAM</option>
+                <option value="READ_ALONG">READ_ALONG</option>
             </select>
 
             <button type="submit"><div  className={style.logo} ><FaSearch color='white'  /></div><span className={style.searchText} >Search</span></button>
